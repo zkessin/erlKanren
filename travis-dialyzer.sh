@@ -14,7 +14,6 @@ dialyzer	ebin/		\
     -Werror_handling		\
     -Wno_undefined_callbacks	\
     -Wrace_conditions		\
-    --statistics -n             \
     --fullpath			\
     -n                          \
     --plt $PLT #  -Wunmatched_returns 
