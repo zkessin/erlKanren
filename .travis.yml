@@ -2,12 +2,14 @@ language: erlang
 otp_release:
    - R16B02
    - R16B01
-
+   - R15B01
+   - R15B02
+   - R15B03
 script:
   - rebar get-deps
   - rebar compile 
   - rebar eunit -v skip_deps=true
   - mkdir plt
-  - ./travis-dialyzer.sh
+  - bash ./travis-dialyzer.sh
 notifications:
   email: false 
