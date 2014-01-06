@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export PATH=$PATH:/usr/local/bin:/usr/bin
-PLT=plt/cb.plt
+PLT=plt/kanren.plt
 
 echo ""
 dialyzer	ebin/		\
