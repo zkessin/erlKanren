@@ -9,6 +9,27 @@
          eq/2, membero/2, conso/3, appendo/3,
          run/1, run/2]).
 
+-spec disj(_,_) -> fun((_) -> any()).
+-spec disj([any()]) -> fun((_) -> any()).
+-spec conj(_,_) -> fun((_) -> [any()]).
+-spec conj(maybe_improper_list()) -> any().
+-spec string_is_lvar(_) -> boolean().
+-spec is_lvar(_) -> boolean().
+-spec ext_s(_,_,_) -> nonempty_maybe_improper_list().
+-spec assq(_,maybe_improper_list()) -> any().
+-spec lookup(_,_) -> any().
+-spec lookup_deep(_,_,_) -> any().
+-spec lookup_deep(_,_) -> any().
+-spec unify(_,_,_,_,_) -> any().
+-spec unify(_,_,_) -> any().
+-spec run(fun((_) -> any())) -> any().
+-spec run(_,fun((_) -> any())) -> [any()].
+-spec eq(_,_) -> fun((_) -> [any()]).
+-spec membero(_,[any()]) -> fun((_) -> any()).
+-spec conso(_,_,_) -> fun((_) -> [any()]).
+-spec appendo(_,_,_) -> fun((_) -> any()).
+
+
 %% Non-deterministic functions
 fail(_) ->
     [].
