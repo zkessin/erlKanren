@@ -1,0 +1,15 @@
+%-*-Erlang-*-
+%% -*- erlang -*-
+{application, erl_kanren,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib,
+                  riak_core
+                 ]},
+  {env, []}
+ ]}.
+
