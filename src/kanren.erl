@@ -35,7 +35,7 @@ baz(X) ->
     succeed(X + 3).
 
 disj_test() ->
-    [2, 3] = (disj(fun foo/1, fun bar/1))(1),
+    [2, 3]    = (disj(fun foo/1, fun bar/1))(1),
     [2, 3, 4] = (disj([fun foo/1, fun bar/1, fun baz/1]))(1).
 
 conj_test() ->
