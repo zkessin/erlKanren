@@ -1,23 +1,43 @@
 -module(kanren).
 -include_lib("eunit/include/eunit.hrl").
+-ifdef(TEST).
+-compile(export_all).
+-endif.
+
 -export([fail/1, succeed/1, disj/1, disj/2, conj/1, conj/2,
          is_lvar/1, ext_s/3, lookup/2, unify/3,
          eq/2, membero/2, conso/3, appendo/3,
          run/1, run/2]).
 
--export([bar/1, baz/1, foo/1]).
 
--export([assq/2]).
+-spec disj(_,_) -> fun((_) -> any()).
+-spec disj([any()]) -> fun((_) -> any()).
+-spec conj(_,_) -> fun((_) -> [any()]).
+-spec conj(maybe_improper_list()) -> any().
+-spec string_is_lvar(_) -> boolean().
+-spec is_lvar(_) -> boolean().
+-spec ext_s(_,_,_) -> nonempty_maybe_improper_list().
+-spec assq(_,maybe_improper_list()) -> any().
+-spec lookup(_,_) -> any().
+-spec lookup_deep(_,_,_) -> any().
+-spec lookup_deep(_,_) -> any().
+-spec unify(_,_,_,_,_) -> any().
+-spec unify(_,_,_) -> any().
+-spec run(fun((_) -> any())) -> any().
+-spec run(_,fun((_) -> any())) -> [any()].
+-spec eq(_,_) -> fun((_) -> [any()]).
+-spec membero(_,[any()]) -> fun((_) -> any()).
+-spec conso(_,_,_) -> fun((_) -> [any()]).
+-spec appendo(_,_,_) -> fun((_) -> any()).
 
--export([lookup_deep/2]).
 
 %% Non-deterministic functions
-
 fail(_) ->
     [].
 
 succeed(X) ->
     [X].
+
 
 disj(F1, F2) ->
     fun(X) -> F1(X) ++ F2(X) end.
@@ -91,6 +111,7 @@ unify(Term1, Term2, S) ->
     LT2 = is_lvar(T2),
     unify(T1, LT1, T2, LT2, S).
 
+
 %% Logic engine
 
 run(G)      when is_function(G) -> G([]).
@@ -119,8 +140,3 @@ appendo(L1, L2, L3) ->
                conso(l_h, l_l3p, L3),
                fun(S) -> (appendo(l_t, L2, l_l3p))(S) end])).
 
-    % appendo doesn't consider L1 with more than 1 element - why?
-
-    %% [[4, 5]] = run(l_q, appendo([1, 2, 3], l_q, [1, 2, 3, 4, 5])),
-    %% [[1, 2, 3, 4, 5], [2, 3, 4, 5], [3, 4, 5], [4, 5], [5]] =
-    %%     run(l_q, appendo(l_x, l_q, [1, 2, 3, 4, 5])).
